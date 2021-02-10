@@ -3,7 +3,7 @@ from selenium.common.exceptions import NoSuchElementException
 class BasePage():
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
-        self.url = "http://selenium1py.pythonanywhere.com/"
+        self.url = "http://selenium1py.pythonanywhere.com/accounts/login/"
         self.browser.implicitly_wait(timeout)
     
     def open(self):
@@ -15,3 +15,5 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+        
+#http://selenium1py.pythonanywhere.com - первоначальный адрес
