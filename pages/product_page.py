@@ -1,7 +1,7 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators 
 from selenium.webdriver.common.by import By
-import time 
+import time  
 
 #Нажимаем на кнопку Корзины
 class ProductPage(BasePage): 
@@ -13,6 +13,12 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.BASKET_MESSAGE), "Нет сообщения о добавлении товара в корзину"        
         #time.sleep(120)
         
+    def book_title_match(self):
+        #Хорошо бы не вызывать каждый раз
+        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        click_basket.click()
+        BasePage.solve_quiz_and_get_code(self)
+        
         product = self.browser.find_element(*ProductPageLocators.BASKET_MESSAGE)
         product_text = product.find_element(By.CSS_SELECTOR, " strong")
         print(product_text.text)
@@ -22,6 +28,13 @@ class ProductPage(BasePage):
         print(book_text.text)
         
         assert product_text.text == book_text.text, "Товар не совпадает"
+
+        
+    def price_book_match(self):
+        #Хорошо бы не вызывать каждый раз
+        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        click_basket.click()
+        BasePage.solve_quiz_and_get_code(self)
         
         price_product = self.browser.find_element(*ProductPageLocators.PRICE_VALUE)
         price_product_text = price_product.find_element(By.CSS_SELECTOR, " strong")
@@ -32,13 +45,4 @@ class ProductPage(BasePage):
         
         assert price_product_text.text == price_book.text, "Цена не совпадает"
         
-        
-    #Проверяем сообщение о добавлении товара в корзину
-
-
-
-#
-#
-#
-#
-#
+#print (browser.current_url)
