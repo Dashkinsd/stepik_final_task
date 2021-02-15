@@ -45,4 +45,26 @@ class ProductPage(BasePage):
         
         assert price_product_text.text == price_book.text, "Цена не совпадает"
         
+        
+    def should_not_be_success_message(self):
+        #Хорошо бы не вызывать каждый раз
+        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        click_basket.click()
+        #BasePage.solve_quiz_and_get_code(self)
+
+        assert self.is_not_element_present(*ProductPageLocators.BASKET_MESSAGE), \
+            "Success message is presented, but should not be"
+            
+    def assert_should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.BASKET_MESSAGE), \
+            "Success message is presented, but should not be"
+        
+        
+    def explicit_should_not_be_success_message(self):
+        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        click_basket.click()    
+        
+        assert self.is_disappeared(*ProductPageLocators.BASKET_MESSAGE), \
+       "Success message is presented, but should not be"
+
 #print (browser.current_url)
