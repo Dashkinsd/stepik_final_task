@@ -7,6 +7,10 @@ class MainPageLocators():
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+    EMAIL_ADDRESS = (By.CSS_SELECTOR, "[name='registration-email']")
+    PASSWORD = (By.CSS_SELECTOR, "[name='registration-password1']")
+    CONFIRM_PASSWORD = (By.CSS_SELECTOR, "[name='registration-password2']")
+    REGISTER = (By.CSS_SELECTOR, "[name='registration_submit']")
 
 class ProductPageLocators():
     BASKET_BUTTON = (By.CSS_SELECTOR, ".btn.btn-lg.btn-primary.btn-add-to-basket")
@@ -18,7 +22,7 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
-
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
     
 class BasketPageLocators():
     BASKET_LINK = (By.CSS_SELECTOR, "span.btn-group")
@@ -27,3 +31,4 @@ class BasketPageLocators():
     ALL_PRODUCTS = (By.CSS_SELECTOR,"[href='/ru/catalogue/']")
     PRODUCT_LINK = (By.CSS_SELECTOR, "[title='Coders at Work']") 
     
+

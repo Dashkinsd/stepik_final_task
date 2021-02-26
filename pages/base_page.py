@@ -10,12 +10,12 @@ from .locators import BasePageLocators
 from selenium.webdriver.common.by import By
 
 class BasePage():
-    def __init__(self, browser, url, timeout=10): #конструктор, сюда передаются значения из page = MainPage(browser, link)
+    def __init__(self, browser, url, timeout=10): #конструктор
         self.browser = browser
         self.url = url
         #self.browser.implicitly_wait(timeout)
     
-    def open(self): #должен открывать нужную страницу в браузере, используя метод get()
+    def open(self): 
         self.browser.get(self.url)
 
     def go_to_login_page(self):
@@ -70,17 +70,8 @@ class BasePage():
             return False
 
         return True
-        
-     #переходим на страницу корзины   
-    #def go_to_basket(self):
-        #link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
-        #link.click()
-        
-    #def basket_empty_message(self):
-        #basket = self.browser.find_element(*BasePageLocators.BASKET_EMPTY)
-        #basket_text = basket.find_element(By.CSS_SELECTOR, " div p") 
-        #print(basket_text.text)
-        #assert basket_text.text == "Ваша корзина пуста Продолжить покупки", "Нет сообщения о пустой корзине"
-        
-        
-        
+      
+#проверка того, что пользователь залогинен      
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"        

@@ -9,12 +9,11 @@ class ProductPage(BasePage):
         click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         click_basket.click()
         #time.sleep(20) 
-        BasePage.solve_quiz_and_get_code(self) #Считаем и вводим значение  
+        #BasePage.solve_quiz_and_get_code(self) #Считаем и вводим значение  
         assert self.is_element_present(*ProductPageLocators.BASKET_MESSAGE), "Нет сообщения о добавлении товара в корзину"        
         #time.sleep(120)
         
     def book_title_match(self):
-        #Хорошо бы не вызывать каждый раз
         click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         click_basket.click()
         BasePage.solve_quiz_and_get_code(self)
@@ -47,9 +46,8 @@ class ProductPage(BasePage):
         
         
     def should_not_be_success_message(self):
-        #Хорошо бы не вызывать каждый раз
-        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
-        click_basket.click()
+        #click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        #click_basket.click()
         #BasePage.solve_quiz_and_get_code(self)
 
         assert self.is_not_element_present(*ProductPageLocators.BASKET_MESSAGE), \

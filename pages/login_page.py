@@ -1,11 +1,9 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
-from selenium.webdriver.common.by import By
+from .locators import MainPageLocators
 
-#from selenium import webdriver
-#link = "http://selenium1py.pythonanywhere.com/accounts/login/"
-#browser = webdriver.Chrome()
-#browser.get(link)
+from selenium.webdriver.common.by import By
+import time
 
 
 class LoginPage(BasePage):
@@ -22,5 +20,29 @@ class LoginPage(BasePage):
 
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "Register form is not presented"
+        
+    def register_new_user(self):
+        login_or_register = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        login_or_register.click()
+        
+        register_email = self.browser.find_element(*LoginPageLocators.EMAIL_ADDRESS)
+        test_email = str(time.time()) + "@yandex.ru"
+        register_email.send_keys(test_email) 
+        time.sleep(5)
+        
+        register_password = self.browser.find_element(*LoginPageLocators.PASSWORD)
+        register_password.send_keys("260220210")
+        print("password:"+register_password.text)
+     
+        
+        register_confirm_password = self.browser.find_element(*LoginPageLocators.CONFIRM_PASSWORD)
+        register_confirm_password.send_keys("260220210")
+        print("password:"+register_confirm_password.text)
+       
+        
+        register_button = self.browser.find_element(*LoginPageLocators.REGISTER)
+        register_button.click()
+  
+        
         
         
