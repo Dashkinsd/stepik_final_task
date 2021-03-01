@@ -3,15 +3,18 @@ from .locators import ProductPageLocators
 from selenium.webdriver.common.by import By
 import time  
 
-#Нажимаем на кнопку Корзины
+
 class ProductPage(BasePage): 
     def click_button_basket(self):
         click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         click_basket.click()
-        #time.sleep(20) 
-        #BasePage.solve_quiz_and_get_code(self) #Считаем и вводим значение  
+        BasePage.solve_quiz_and_get_code(self) #Считаем и вводим значение  
         assert self.is_element_present(*ProductPageLocators.BASKET_MESSAGE), "Нет сообщения о добавлении товара в корзину"        
-        #time.sleep(120)
+
+    def click_button_basket_guest(self):
+        click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        click_basket.click() 
+        assert self.is_element_present(*ProductPageLocators.BASKET_MESSAGE), "Нет сообщения о добавлении товара в корзину"
         
     def book_title_match(self):
         click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
@@ -30,7 +33,6 @@ class ProductPage(BasePage):
 
         
     def price_book_match(self):
-        #Хорошо бы не вызывать каждый раз
         click_basket = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         click_basket.click()
         BasePage.solve_quiz_and_get_code(self)
@@ -65,4 +67,3 @@ class ProductPage(BasePage):
         assert self.is_disappeared(*ProductPageLocators.BASKET_MESSAGE), \
        "Success message is presented, but should not be"
 
-#print (browser.current_url)

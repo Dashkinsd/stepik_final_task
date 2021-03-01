@@ -28,7 +28,6 @@ class LoginPage(BasePage):
         register_email = self.browser.find_element(*LoginPageLocators.EMAIL_ADDRESS)
         test_email = str(time.time()) + "@yandex.ru"
         register_email.send_keys(test_email) 
-        time.sleep(5)
         
         register_password = self.browser.find_element(*LoginPageLocators.PASSWORD)
         register_password.send_keys("260220210")
